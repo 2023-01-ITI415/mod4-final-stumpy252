@@ -52936,8 +52936,8 @@ MonoBehaviour:
   countText: {fileID: 498198470}
   firstCollectible: {fileID: 52831792}
   winTextObject: {fileID: 1589495383}
-  walkingSpeed: 7.5
-  runningSpeed: 11.5
+  walkingSpeed: 5
+  runningSpeed: 8.5
   jumpSpeed: 8
   gravity: 20
   playerCamera: {fileID: 1421069262}
