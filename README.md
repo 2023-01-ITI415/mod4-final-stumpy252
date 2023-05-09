@@ -1,6 +1,8 @@
 # 09-14-module3-SNAPS-Base
 This project will house scenes for level design, interiors and exteriors, lighting, audio and particle systems,
 
+Game is a sci-fi based collectin game where to goalk is to find all of the power cores hidden throughout the building I created 
+
 ## Scene List
 - MainMenu - provide access to other scenes
 - Probuilder - basic use of probuilder to get comfortable with core functions
