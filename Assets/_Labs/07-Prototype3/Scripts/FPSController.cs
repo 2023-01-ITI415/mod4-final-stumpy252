@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
@@ -9,6 +10,7 @@ public class FPSController : MonoBehaviour
 {
     public TextMeshProUGUI countText;
     public GameObject firstCollectible;
+    public GameObject winTextObject;
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
@@ -34,6 +36,7 @@ public class FPSController : MonoBehaviour
         Cursor.visible = false;
 
         firstCollectible.SetActive(false);
+        winTextObject.SetActive(false);
         count = 0;
         SetCountText();
     }
@@ -53,7 +56,14 @@ public class FPSController : MonoBehaviour
             firstCollectible.SetActive(true);
             Invoke("SetFalse", 5.0f);
         }
+        if(count == 5){
+            winTextObject.SetActive(true);
+            Invoke("EndGame", 5.0f);
+        }
         
+    }
+    void EndGame(){
+        SceneManager.LoadScene("MainMenu");
     }
     void SetFalse(){
             firstCollectible.SetActive(false);
