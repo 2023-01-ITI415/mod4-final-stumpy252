@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 
 public class FPSController : MonoBehaviour
 {
+    public TextMeshProUGUI countText;
+    public GameObject firstCollectible;
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
     public float jumpSpeed = 8.0f;
@@ -17,6 +20,7 @@ public class FPSController : MonoBehaviour
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
+    private int count;
 
     [HideInInspector]
     public bool canMove = true;
@@ -28,7 +32,32 @@ public class FPSController : MonoBehaviour
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        firstCollectible.SetActive(false);
+        count = 0;
+        SetCountText();
     }
+    private void OnTriggerEnter(Collider other){
+        if(other.gameObject.CompareTag("Collectible")){
+            count += 1;
+            SetCountText();
+            other.gameObject.SetActive(false); 
+        }
+       
+    }
+    
+    void SetCountText()
+    {
+        countText.text = "Power Cores: " + count.ToString();
+        if(count == 1){
+            firstCollectible.SetActive(true);
+            Invoke("SetFalse", 5.0f);
+        }
+        
+    }
+    void SetFalse(){
+            firstCollectible.SetActive(false);
+        }
 
     void Update()
     {
